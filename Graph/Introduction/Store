@@ -1,0 +1,20 @@
+#include<bits/stdc++.h>
+using namespace std;
+const int N = 105;
+int g[N][N];
+int main(){
+    int n,m;
+    cin>>n>>m;
+    while(m--){
+      int u,v;
+      cin>>u>>v;
+      g[u][v]++;
+      g[v][u]++;
+    } 
+    // checking node 2 and 4 have a connectio or not
+    if(g[2][4]){
+      cout<<"YES\n";
+    }else{
+      cout<<"NO\n";
+    }
+}
