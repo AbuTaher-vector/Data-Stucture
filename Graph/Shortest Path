@@ -1,0 +1,43 @@
+#include<bits/stdc++.h>
+using namespace std;
+const int N = 10e5 + 9;
+int dis[N],parent[N];
+bool vis[N];
+vector<int>g[N]; 
+int main(){
+  int n,m;
+  cin>>n>>m;
+  while(m--){
+    int u,v;
+    cin>>u>>v;
+    g[u].push_back(v);
+    g[v].push_back(u);
+  }
+  int start_node,destination_node;
+  cin>>start_node>>destination_node;
+  queue<int>q;
+  q.push(start_node);
+  vis[start_node] = true; 
+  while(!q.empty()){
+       int u = q.front();
+       q.pop();
+      for(auto v:g[u]){
+        if(!vis[v]){
+             q.push(v);
+             parent[v]=u;
+             vis[v] = true;
+        }
+      }
+  }
+  vector<int>ans;
+  ans.push_back(destination_node);
+  while(1){
+    int x = parent[destination_node];
+    ans.push_back(x);
+    if(x==start_node) break;
+    destination_node = x;
+  }
+  for(int i=ans.size()-1;i>=0;i--) cout<<ans[i]<<" ";
+  cout<<"\n";
+
+}
